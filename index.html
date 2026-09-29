@@ -1,0 +1,173 @@
+<title>Shivesh Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one column page. Hero splits into name on the left and a "monitor" frame holding the cat photo on the right. A thin timeline ruler with a red playhead separates the hero from the rest. */
+:root {
+  --bg: #eceef2;
+  --surface: #f8f9fb;
+  --fg: #15171c;
+  --muted: #5a606c;
+  --line: #cfd3db;
+  --accent: #e0383e;
+  --accent-ink: #ffffff;
+  --f-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101216; --surface: #171a20; --fg: #eceef2; --muted: #9aa0ac; --line: #2a2e37; --accent: #ff5b61; --accent-ink: #15171c;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101216; --surface: #171a20; --fg: #eceef2; --muted: #9aa0ac; --line: #2a2e37; --accent: #ff5b61; --accent-ink: #15171c;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.6;
+  padding-inline: max(16px, 4vw);
+  padding-block: 28px 56px;
+}
+.wrap { max-width: 1040px; margin-inline: auto; display: flex; flex-direction: column; gap: 56px; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.top { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
+.top nav { display: flex; gap: 20px; }
+.top a { text-decoration: none; }
+.top a:hover { color: var(--fg); }
+.rec { display: inline-flex; align-items: center; gap: 8px; color: var(--fg); }
+.rec i { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); display: block; }
+@media (prefers-reduced-motion: no-preference) { .rec i { animation: blink 1.6s steps(2, jump-none) infinite; } }
+@keyframes blink { 50% { opacity: 0.25; } }
+
+.hero { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; }
+.hero > * { min-width: 0; }
+.eyebrow { font-family: var(--f-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
+h1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(3.2rem, 11vw, 6.5rem); line-height: 0.95; letter-spacing: -0.03em; margin: 0 0 20px; text-wrap: balance; }
+.lead { font-size: clamp(1.1rem, 2.4vw, 1.3rem); max-width: 34ch; margin: 0 0 26px; color: var(--fg); }
+.btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { display: inline-block; padding: 12px 20px; border-radius: 6px; font-weight: 500; text-decoration: none; border: 1px solid var(--fg); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn:hover { transform: translateY(-1px); }
+
+.monitor { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px; }
+.screen { position: relative; aspect-ratio: 1 / 1; max-width: 100%; border-radius: 4px; overflow: hidden; background: #000; }
+.screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.screen .tc, .screen .tag { position: absolute; font-family: var(--f-mono); font-size: 12px; color: #fff; background: rgba(0,0,0,0.55); padding: 3px 8px; border-radius: 3px; }
+.screen .tc { left: 10px; bottom: 10px; }
+.screen .tag { right: 10px; top: 10px; display: flex; align-items: center; gap: 6px; }
+.screen .tag i { width: 7px; height: 7px; border-radius: 50%; background: #ff5b61; display: block; }
+.caption { font-family: var(--f-mono); font-size: 12px; color: var(--muted); margin: 10px 2px 2px; }
+
+.ruler { position: relative; height: 34px; border-top: 1px solid var(--line); background: repeating-linear-gradient(to right, var(--line) 0 1px, transparent 1px 24px); background-size: 100% 10px; background-repeat: repeat-x; }
+.ruler::before { content: ""; position: absolute; left: 22%; top: -1px; bottom: -10px; width: 2px; background: var(--accent); }
+.ruler::after { content: ""; position: absolute; left: calc(22% - 5px); top: -1px; width: 12px; height: 10px; background: var(--accent); clip-path: polygon(0 0, 100% 0, 50% 100%); }
+
+.grid { display: grid; grid-template-columns: 200px 1fr; gap: 20px 40px; }
+.grid > * { min-width: 0; }
+h2 { font-family: var(--f-display); font-weight: 600; font-size: 1.5rem; margin: 0; letter-spacing: -0.01em; }
+.grid p { margin: 0 0 14px; max-width: 62ch; }
+.grid p:last-child { margin-bottom: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 0; list-style: none; }
+.chips li { border: 1px solid var(--line); background: var(--surface); padding: 6px 14px; border-radius: 999px; font-size: 15px; }
+.edu { display: flex; flex-direction: column; gap: 2px; }
+.edu strong { font-family: var(--f-display); font-weight: 600; font-size: 1.15rem; }
+.edu span { color: var(--muted); }
+.mono { font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
+
+footer { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 18px; font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
+
+@media (max-width: 760px) {
+  .hero { grid-template-columns: 1fr; gap: 28px; }
+  .monitor { max-width: 420px; }
+  .grid { grid-template-columns: 1fr; gap: 10px; }
+  .wrap { gap: 44px; }
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <span class="rec"><i></i> Shivesh / Video Editor</span>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#tools">Tools</a>
+      <a href="#study">Study</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Video editor · B.Tech CSE student</p>
+      <h1>Shivesh</h1>
+      <p class="lead">I cut videos that hold attention, and I study computer science while I do it.</p>
+      <div class="btns">
+        <a class="btn primary" href="#contact">Work with me</a>
+        <a class="btn" href="#about">About me</a>
+      </div>
+    </div>
+    <figure style="margin:0">
+      <div class="monitor">
+        <div class="screen">
+          <img src="cat.jpg" alt="A grey and white cat with huge round eyes looking straight into the camera" width="640" height="640">
+          <span class="tag"><i></i> REC</span>
+          <span class="tc">00:00:12:04</span>
+        </div>
+      </div>
+      <figcaption class="caption">Head of quality control. Approves every cut.</figcaption>
+    </figure>
+  </section>
+
+  <div class="ruler" aria-hidden="true"></div>
+
+  <section class="grid" id="about">
+    <h2>About</h2>
+    <div>
+      <p>I'm Shivesh, a video editor. I make reels, edits and motion work, and I take on projects for clients.</p>
+      <p>Alongside editing I'm doing my B.Tech in Computer Science and Engineering (Core). Coding taught me to break a big job into small steps, and that is also how I edit: sort the clips, find the beat, then tighten every cut.</p>
+    </div>
+  </section>
+
+  <section class="grid" id="tools">
+    <h2>Tools</h2>
+    <ul class="chips">
+      <li>Video editing</li>
+      <li>Alight Motion</li>
+      <li>Motion graphics</li>
+      <li>Colour and transitions</li>
+      <li>Sound sync</li>
+      <li>Client projects</li>
+    </ul>
+  </section>
+
+  <section class="grid" id="study">
+    <h2>Study</h2>
+    <div class="edu">
+      <strong>B.Tech, Computer Science and Engineering (Core)</strong>
+      <span>Chandigarh University, UP Campus</span>
+    </div>
+  </section>
+
+  <section class="grid" id="contact">
+    <h2>Contact</h2>
+    <div>
+      <p>Open to video editing projects. Reels and client work will be added to this page soon.</p>
+      <p class="mono">Message me to talk about your project.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>Shivesh</span>
+    <span>Edited with care</span>
+  </footer>
+</div>
